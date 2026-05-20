@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - FlexiCupos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="auth-page">
+        <aside class="auth-panel-visual">
+            <img src="img/gallery2.jpg" alt="">
+            <div class="overlay"></div>
+            <div class="auth-panel-copy">
+                <h2>Tu próxima cita, a un clic</h2>
+                <p>Accede a tu cuenta para gestionar reservas, ver historial y conectar con los mejores profesionales.</p>
+            </div>
+        </aside>
+
+        <main class="auth-panel-form">
+            <div class="auth-box">
+                <h2>Bienvenido</h2>
+                <div id="error-message" class="error-msg"></div>
+
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" required placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <div class="password-container">
+                            <input type="password" id="password" name="password" required placeholder="••••••••">
+                            <span class="toggle-password" id="togglePassword" title="Mostrar contraseña">👁</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="auth-btn">Ingresar</button>
+                </form>
+
+                <div class="auth-links">
+                    <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+                    <p style="margin-top: 1rem;"><a href="index.html">← Volver al inicio</a></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+        });
+    </script>
+</body>
+</html>

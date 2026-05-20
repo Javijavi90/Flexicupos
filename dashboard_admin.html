@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - FlexiCupos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            Flexi<span>Admin</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active">Resumen General</a></li>
+            <li><a href="#">Gestión de Clientes</a></li>
+            <li><a href="#">Gestión de Profesionales</a></li>
+            <li><a href="#">Auditoría de Citas</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="#" id="logout-btn" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Panel de Administración Global</h2>
+            <div class="user-info">
+                <span id="user-name">Cargando...</span>
+                <span class="role-badge" id="user-role" style="background:#e74c3c;">Cargando...</span>
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            <div class="card">
+                <h3>Usuarios Totales</h3>
+                <h1 style="font-size: 3rem; margin: 1rem 0; color: var(--dash-text);">0</h1>
+                <p style="color: var(--dash-text-muted);">Clientes y Prestadores</p>
+            </div>
+            
+            <div class="card">
+                <h3>Citas del Mes</h3>
+                <h1 style="font-size: 3rem; margin: 1rem 0; color: var(--dash-text);">0</h1>
+                <p style="color: var(--dash-text-muted);">Citas completadas y pendientes</p>
+            </div>
+            
+            <div class="card">
+                <h3>Acciones Rápidas</h3>
+                <button class="btn-primary" style="width: 100%; margin-bottom: 0.5rem; background-color: #3498db;">Añadir Profesional Manual</button>
+                <button class="btn-primary" style="width: 100%; background-color: #9b59b6;">Ver Logs de Errores</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

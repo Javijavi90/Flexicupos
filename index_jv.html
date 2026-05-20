@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexiCupos - Servicios Profesionales On-Demand</title>
+    <meta name="description" content="Plataforma premium para reservar servicios de manicuristas, estilistas, masajistas y profesionales independientes.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="landing-body">
+    
+    <!-- NAVBAR TRANSPARENTE -->
+    <nav class="navbar transparent-nav">
+        <a href="index.html" class="logo">Flexi<span>Cupos</span></a>
+        <div class="nav-links" id="nav-menu">
+            <a href="login.html" class="nav-link-item">Iniciar Sesión</a>
+            <a href="register.html" class="btn-primary">Ofrece tus Servicios</a>
+        </div>
+    </nav>
+
+    <!-- HERO CON BUSCADOR CENTRADO Y FONDO DE COLAGE DE SERVICIOS -->
+    <header class="hero-search-section">
+        <div class="hero-collage-background">
+            <div class="bg-img"><img src="img/gallery2.jpg" alt="Barbería"></div>
+            <div class="bg-img"><img src="img/gallery1.jpg" alt="Manicura"></div>
+            <div class="bg-img"><img src="img/gallery3.jpg" alt="Peluquería"></div>
+            <div class="bg-img"><img src="img/gallery4.jpg" alt="Estética Facial"></div>
+            <div class="bg-img"><img src="img/how_it_works.jpg" alt="Masajes"></div>
+            <div class="bg-img"><img src="img/cat_maquillaje.jpg" alt="Maquillaje"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1 class="animate-fade-up">Encuentra estilistas, manicuristas y barberos cerca de ti.</h1>
+            <p class="animate-fade-up delay-1">Reserva citas al instante para peluquería, diseño de uñas, barbería, maquillaje y masajes. Agenda fácil y recibe confirmaciones al instante por WhatsApp.</p>
+            
+            <div class="search-box animate-fade-up delay-2">
+                <i class="fa-solid fa-magnifying-glass location-icon"></i>
+                <input type="text" placeholder="¿Qué servicio te gustaría agendar? (Ej. Uñas semipermanentes, corte fade, tinte...)" class="search-input">
+                <button class="search-btn">Buscar Servicio</button>
+            </div>
+            
+            <div class="trending-searches animate-fade-up delay-3">
+                <span>Servicios populares:</span>
+                <span class="badge"><i class="fa-solid fa-scissors"></i> Barbería & Corte</span>
+                <span class="badge"><i class="fa-solid fa-hand-sparkles"></i> Manicura & Pedicura</span>
+                <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Peluquería & Color</span>
+                <span class="badge"><i class="fa-solid fa-spa"></i> Estética & Spas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CATEGORÍAS (GRILLA DE SERVICIOS) -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Explora nuestras categorías</h2>
+            <p class="section-subtitle">Descubre los mejores profesionales calificados en tu zona.</p>
+            
+            <div class="categories-grid">
+                <!-- Tarjeta 1 -->
+                <div class="category-card">
+                    <img src="img/cat_manicura.jpg" alt="Manicura y Pedicura">
+                    <div class="category-info">
+                        <h3>Manicura y Pedicura</h3>
+                        <p>Diseño de uñas, acrílico y gel.</p>
+                    </div>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="category-card">
+                    <img src="img/cat_barberia.jpg" alt="Barbería Profesional">
+                    <div class="category-info">
+                        <h3>Barbería Profesional</h3>
+                        <p>Cortes modernos, barbas y perfilado.</p>
+                    </div>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="category-card">
+                    <img src="img/cat_masajes.jpg" alt="Masajes y Spa">
+                    <div class="category-info">
+                        <h3>Masajes y Spa</h3>
+                        <p>Relajantes, descontracturantes.</p>
+                    </div>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div class="category-card">
+                    <img src="img/cat_peluqueria.jpg" alt="Estilistas y Peluquería">
+                    <div class="category-info">
+                        <h3>Peluquería Femenina</h3>
+                        <p>Tintes, peinados y cortes de diseño.</p>
+                    </div>
+                </div>
+                <!-- Tarjeta 5 -->
+                <div class="category-card">
+                    <img src="img/cat_maquillaje.jpg" alt="Maquillaje Profesional">
+                    <div class="category-info">
+                        <h3>Maquillaje</h3>
+                        <p>Para eventos, novias y casual.</p>
+                    </div>
+                </div>
+                <!-- Tarjeta 6 -->
+                <div class="category-card">
+                    <img src="img/cat_facial.jpg" alt="Limpieza Facial">
+                    <div class="category-info">
+                        <h3>Estética Facial</h3>
+                        <p>Limpiezas, hidratación y cuidado de piel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA CON DISEÑO SPLIT (FOTO + PASOS) -->
+    <section class="how-it-works">
+        <div class="container how-it-works-split">
+            <div class="steps-text">
+                <h2 class="section-title text-left">¿Cómo funciona FlexiCupos?</h2>
+                <p class="section-subtitle text-left">Reservar tu cita de cuidado personal nunca fue tan fácil y rápido.</p>
+                
+                <div class="step-item">
+                    <div class="icon-circle-small"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="step-info">
+                        <h3>1. Busca el Servicio</h3>
+                        <p>Filtra por categoría, ubicación o nombre del profesional de belleza que necesitas.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="icon-circle-small"><i class="fa-regular fa-calendar-check"></i></div>
+                    <div class="step-info">
+                        <h3>2. Elige tu Horario</h3>
+                        <p>Mira los cupos libres en tiempo real y selecciona la hora que mejor te acomode.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="icon-circle-small"><i class="fa-solid fa-star"></i></div>
+                    <div class="step-info">
+                        <h3>3. Disfruta y Valora</h3>
+                        <p>Asiste a tu cita y deja una reseña para ayudar a otros clientes de la comunidad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="steps-image-container">
+                <img src="img/how_it_works.jpg" alt="Tratamiento de spa y belleza en FlexiCupos" class="steps-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA DE INSPIRACIÓN Y DISEÑO -->
+    <section class="inspiration-gallery">
+        <div class="container">
+            <h2 class="section-title">Resultados reales y profesionales</h2>
+            <p class="section-subtitle">Echa un vistazo a los trabajos y salones disponibles en nuestra plataforma.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="img/gallery1.jpg" alt="Manicura premium">
+                    <div class="gallery-overlay-text">Salones de Belleza</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery2.jpg" alt="Barbería profesional">
+                    <div class="gallery-overlay-text">Cortes Modernos</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery3.jpg" alt="Estilismo de cabello">
+                    <div class="gallery-overlay-text">Estilistas Expertos</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery4.jpg" alt="Tratamientos faciales">
+                    <div class="gallery-overlay-text">Cuidado Facial</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER PROFESIONALES -->
+    <section class="cta-provider">
+        <div class="cta-overlay"></div>
+        <div class="cta-content">
+            <h2>¿Eres un profesional independiente?</h2>
+            <p>Únete a FlexiCupos, gestiona tu propia agenda, exhibe tu portafolio y llega a miles de clientes en tu ciudad.</p>
+            <br>
+            <a href="register.html" class="btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">Crear mi Perfil Profesional</a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 FlexiCupos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Efecto scroll en el navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if(window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - FlexiCupos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box large">
+            <h2>Crear Cuenta en FlexiCupos</h2>
+            <div id="error-message" class="error-msg"></div>
+
+            <div class="tabs">
+                <div class="tab active" onclick="setTipo('cliente')">Soy Cliente</div>
+                <div class="tab" onclick="setTipo('prestador')">Soy Profesional</div>
+            </div>
+
+            <form id="register-form">
+                <input type="hidden" name="tipo" id="tipo_usuario" value="cliente">
+                
+                <div style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="correo">Correo Electrónico</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="telefono">Teléfono (WhatsApp)</label>
+                        <input type="text" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                </div>
+
+                <!-- Campos Cliente -->
+                <div id="fields_cliente">
+                    <div class="form-group">
+                        <label for="ubicacion">Ubicación / Ciudad</label>
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="Ej. Madrid, Centro">
+                    </div>
+                </div>
+
+                <!-- Campos Prestador -->
+                <div id="fields_prestador" style="display: none;">
+                    <div style="display: flex; gap: 1rem;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="especialidad">Especialidad</label>
+                            <input type="text" id="especialidad" name="especialidad" placeholder="Ej. Manicurista, Masajista">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="direccion">Dirección o Zona</label>
+                            <input type="text" id="direccion" name="direccion">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción de tu perfil profesional</label>
+                        <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn_submit" class="auth-btn">Registrarme como Cliente</button>
+            </form>
+
+            <div class="auth-links">
+                <p>¿Ya tienes cuenta? <a href="login.html">Inicia Sesión</a></p>
+                <p style="margin-top: 1rem;"><a href="index.html">← Volver al inicio</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

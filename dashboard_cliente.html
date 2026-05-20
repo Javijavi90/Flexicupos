@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Cliente - FlexiCupos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            Flexi<span>Cupos</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active">Mis Reservas</a></li>
+            <li><a href="#">Buscar Profesionales</a></li>
+            <li><a href="#">Mi Perfil</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="#" id="logout-btn" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Panel de Cliente</h2>
+            <div class="user-info">
+                <span id="user-name">Cargando...</span>
+                <span class="role-badge" id="user-role">Cargando...</span>
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            <div class="card">
+                <h3>Próxima Cita</h3>
+                <p style="color: var(--dash-text-muted);">No tienes citas próximas programadas.</p>
+                <button class="btn-primary" style="margin-top: 1rem;">Buscar un Profesional</button>
+            </div>
+            
+            <div class="card">
+                <h3>Historial Reciente</h3>
+                <p style="color: var(--dash-text-muted);">Aún no has solicitado ningún servicio.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

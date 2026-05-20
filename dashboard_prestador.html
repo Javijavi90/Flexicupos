@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Profesional - FlexiCupos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            Flexi<span>Cupos</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active">Mi Agenda</a></li>
+            <li><a href="#">Mis Servicios y Precios</a></li>
+            <li><a href="#">Portafolio de Trabajo</a></li>
+            <li><a href="#">Mi Perfil</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="#" id="logout-btn" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Panel de Profesional</h2>
+            <div class="user-info">
+                <span id="user-name">Cargando...</span>
+                <span class="role-badge" id="user-role" style="background:#2ecc71;">Cargando...</span>
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            <div class="card">
+                <h3>Citas para Hoy</h3>
+                <p style="color: var(--dash-text-muted);">No tienes citas agendadas para el día de hoy.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Resumen de Portafolio</h3>
+                <p style="color: var(--dash-text-muted);">Aún no has subido imágenes de tus trabajos previos.</p>
+                <button class="btn-primary" style="margin-top: 1rem; background-color: #3498db;">Subir Imágenes</button>
+            </div>
+            
+            <div class="card">
+                <h3>Servicios Activos</h3>
+                <p style="color: var(--dash-text-muted);">No tienes servicios registrados.</p>
+                <button class="btn-primary" style="margin-top: 1rem;">Agregar Servicio</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
