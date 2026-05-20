@@ -6,24 +6,184 @@
     <title>Iniciar Sesión - FlexiCupos</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #fdfbf7;
+        }
+        
+        .login-full-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Tiras de imágenes deslizándose */
+        .scrolling-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            z-index: 1;
+            transform: rotate(-6deg) scale(1.2);
+            opacity: 0.55;
+        }
+        
+        .scroll-row {
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+        }
+        
+        .scroll-track {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .scroll-track img {
+            width: 260px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+            filter: brightness(0.8) contrast(1.15);
+        }
+
+        .row-left .scroll-track {
+            animation: scrollLeft 45s linear infinite;
+        }
+        
+        .row-right .scroll-track {
+            animation: scrollRight 45s linear infinite;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .login-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(253, 251, 247, 0.65) 0%, rgba(255, 245, 235, 0.75) 100%);
+            z-index: 2;
+        }
+        
+        .login-center-form {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .login-center-form .auth-box {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+    </style>
 </head>
 <body>
-    <div class="auth-page">
-        <aside class="auth-panel-visual">
-            <img src="img/gallery2.jpg" alt="">
-            <div class="overlay"></div>
-            <div class="auth-panel-copy">
-                <h2>Tu próxima cita, a un clic</h2>
-                <p>Accede a tu cuenta para gestionar reservas, ver historial y conectar con los mejores profesionales.</p>
+    <div class="login-full-container">
+        
+        <!-- FONDO DE TIRAS DESLIZANTES INFINITAS -->
+        <div class="scrolling-bg">
+            <!-- Tira 1: Derecha a Izquierda -->
+            <div class="scroll-row row-left">
+                <div class="scroll-track">
+                    <img src="img/cat_manicura.jpg" alt="Uñas">
+                    <img src="img/cat_barberia.jpg" alt="Barbería">
+                    <img src="img/cat_masajes.jpg" alt="Masajes">
+                    <img src="img/cat_peluqueria.jpg" alt="Peluquería">
+                    <img src="img/cat_maquillaje.jpg" alt="Maquillaje">
+                    <img src="img/cat_facial.jpg" alt="Facial">
+                    <img src="img/cat_manicura.jpg" alt="Uñas">
+                    <img src="img/cat_barberia.jpg" alt="Barbería">
+                    <img src="img/cat_masajes.jpg" alt="Masajes">
+                    <img src="img/cat_peluqueria.jpg" alt="Peluquería">
+                    <img src="img/cat_maquillaje.jpg" alt="Maquillaje">
+                    <img src="img/cat_facial.jpg" alt="Facial">
+                </div>
             </div>
-        </aside>
-
-        <main class="auth-panel-form">
+            
+            <!-- Tira 2: Izquierda a Derecha -->
+            <div class="scroll-row row-right">
+                <div class="scroll-track">
+                    <img src="img/gallery1.jpg" alt="Uñas 2">
+                    <img src="img/gallery2.jpg" alt="Barbería 2">
+                    <img src="img/gallery3.jpg" alt="Peluquería 2">
+                    <img src="img/gallery4.jpg" alt="Facial 2">
+                    <img src="img/how_it_works.jpg" alt="Spa 2">
+                    <img src="img/cat_maquillaje.jpg" alt="Maquillaje 2">
+                    <img src="img/gallery1.jpg" alt="Uñas 2">
+                    <img src="img/gallery2.jpg" alt="Barbería 2">
+                    <img src="img/gallery3.jpg" alt="Peluquería 2">
+                    <img src="img/gallery4.jpg" alt="Facial 2">
+                    <img src="img/how_it_works.jpg" alt="Spa 2">
+                    <img src="img/cat_maquillaje.jpg" alt="Maquillaje 2">
+                </div>
+            </div>
+            
+            <!-- Tira 3: Derecha a Izquierda -->
+            <div class="scroll-row row-left">
+                <div class="scroll-track">
+                    <img src="img/cat_maquillaje.jpg" alt="Maquillaje 3">
+                    <img src="img/gallery2.jpg" alt="Barbería 3">
+                    <img src="img/cat_facial.jpg" alt="Facial 3">
+                    <img src="img/gallery1.jpg" alt="Uñas 3">
+                    <img src="img/cat_barberia.jpg" alt="Barbería 4">
+                    <img src="img/gallery3.jpg" alt="Peluquería 3">
+                    <img src="img/cat_maquillaje.jpg" alt="Maquillaje 3">
+                    <img src="img/gallery2.jpg" alt="Barbería 3">
+                    <img src="img/cat_facial.jpg" alt="Facial 3">
+                    <img src="img/gallery1.jpg" alt="Uñas 3">
+                    <img src="img/cat_barberia.jpg" alt="Barbería 4">
+                    <img src="img/gallery3.jpg" alt="Peluquería 3">
+                </div>
+            </div>
+        </div>
+        
+        <!-- CAPA DE COLOR CREMA -->
+        <div class="login-bg-overlay"></div>
+        
+        <!-- FORMULARIO CENTRAL -->
+        <div class="login-center-form">
             <div class="auth-box">
-                <h2>Bienvenido</h2>
+                <h2>Bienvenido a FlexiCupos</h2>
                 <div id="error-message" class="error-msg"></div>
 
                 <form id="login-form">
+                    <div class="tabs" id="login-role-tabs">
+                        <div class="tab active" data-role="cliente"><i class="fa-regular fa-user"></i> Cliente</div>
+                        <div class="tab" data-role="prestador"><i class="fa-regular fa-star"></i> Profesional</div>
+                    </div>
+                    <input type="hidden" name="rol_login" id="rol_login" value="cliente">
+
                     <div class="form-group">
                         <label for="correo">Correo electrónico</label>
                         <input type="email" id="correo" name="correo" required placeholder="correo@ejemplo.com">
@@ -43,7 +203,7 @@
                     <p style="margin-top: 1rem;"><a href="index.html">← Volver al inicio</a></p>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 
     <script src="js/auth.js"></script>
@@ -53,6 +213,17 @@
         togglePassword.addEventListener('click', function () {
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
+        });
+
+        // Role tabs for login
+        const roleTabs = document.querySelectorAll('#login-role-tabs .tab');
+        const rolInput = document.getElementById('rol_login');
+        roleTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                roleTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                rolInput.value = this.dataset.role;
+            });
         });
     </script>
 </body>

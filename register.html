@@ -6,6 +6,7 @@
     <title>Registro - FlexiCupos</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="page-with-nav">
 
@@ -18,12 +19,12 @@
 
     <div class="auth-container">
         <div class="auth-box large">
-            <h2>Crear cuenta</h2>
+            <h2>Crear cuenta en FlexiCupos</h2>
             <div id="error-message" class="error-msg"></div>
 
-            <div class="tabs">
-                <div class="tab active" onclick="setTipo('cliente')">Soy cliente</div>
-                <div class="tab" onclick="setTipo('prestador')">Soy profesional</div>
+            <div class="tabs" id="register-role-tabs">
+                <div class="tab active" onclick="setTipo('cliente')"><i class="fa-regular fa-user"></i> Cliente</div>
+                <div class="tab" onclick="setTipo('prestador')"><i class="fa-regular fa-star"></i> Profesional</div>
             </div>
 
             <form id="register-form">
@@ -75,7 +76,7 @@
                     </div>
                 </div>
 
-                <button type="submit" id="btn_submit" class="auth-btn">Registrarme como cliente</button>
+                <button type="submit" id="btn_submit" class="auth-btn">Registrarme como Cliente</button>
             </form>
 
             <div class="auth-links">

@@ -34,10 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
                 
                 if (result.status === 'success') {
-                    // Redirección según el rol
-                    if (result.role === 'admin') window.location.href = 'dashboard_admin.html';
-                    else if (result.role === 'prestador') window.location.href = 'dashboard_prestador.html';
-                    else window.location.href = 'dashboard_cliente.html';
+                    // Redirigir al index (no al dashboard)
+                    window.location.href = 'index.html';
                 } else {
                     showError(result.message);
                     submitBtn.disabled = false;
@@ -75,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
                 
                 if (result.status === 'success') {
-                    alert('Registro exitoso. Ahora puedes iniciar sesión.');
                     window.location.href = 'login.html';
                 } else {
                     showError(result.message);
@@ -117,7 +114,7 @@ function setTipo(tipo) {
     } else {
         fCliente.style.display = 'none';
         fPrestador.style.display = 'block';
-        btnSubmit.innerText = 'Registrarme como Prestador';
+        btnSubmit.innerText = 'Registrarme como Profesional';
         
         document.getElementById('especialidad').setAttribute('required', 'required');
         document.getElementById('direccion').setAttribute('required', 'required');

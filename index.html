@@ -11,42 +11,68 @@
 </head>
 <body class="landing-body">
 
-    <nav class="navbar transparent-nav">
+    <nav class="navbar transparent-nav" id="main-nav">
         <a href="index.html" class="logo">Flexi<span>Cupos</span></a>
         <div class="nav-links" id="nav-menu">
-            <a href="login.html" class="nav-link-item">Iniciar sesión</a>
-            <a href="register.html" class="btn-primary">Ofrece tus servicios</a>
+            <!-- Guest state -->
+            <div id="nav-guest">
+                <a href="login.html" class="nav-link-item">Iniciar sesión</a>
+                <a href="register.html" class="btn-primary">Registrarse</a>
+            </div>
+            <!-- Logged-in state (hidden by default) -->
+            <div id="nav-user" style="display: none;">
+                <div class="user-dropdown">
+                    <button class="user-dropdown-btn" id="user-dropdown-btn">
+                        <span class="user-avatar"><i class="fa-solid fa-user"></i></span>
+                        <span id="nav-user-name">Usuario</span>
+                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="user-dropdown-menu">
+                        <a href="#" id="dropdown-dashboard" class="dropdown-item">
+                            <i class="fa-solid fa-gauge-high"></i> Mi panel
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="dropdown-cerrar-sesion" class="dropdown-item dropdown-danger">
+                            <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <header class="hero-search-section">
+    <header class="hero-search-section" id="hero-section">
         <div class="hero-bg" aria-hidden="true">
             <img src="img/gallery3.jpg" alt="">
         </div>
         <div class="hero-inner">
             <div class="hero-copy">
-                <h1 class="animate-fade-up">
-                    Reserva belleza y bienestar con <em>profesionales cerca de ti</em>
-                </h1>
-                <p class="animate-fade-up delay-1">
-                    Manicura, barbería, peluquería, maquillaje y spa. Elige horario, confirma por WhatsApp y listo.
-                </p>
+                <div id="hero-text-content">
+                    <h1 class="animate-fade-up">
+                        Reserva belleza y bienestar con <em>profesionales cerca de ti</em>
+                    </h1>
+                    <p class="animate-fade-up delay-1">
+                        Manicura, barbería, peluquería, maquillaje y spa. Elige horario, confirma por WhatsApp y listo.
+                    </p>
+                </div>
 
                 <div class="search-box animate-fade-up delay-2">
                     <i class="fa-solid fa-magnifying-glass location-icon"></i>
-                    <input type="text" placeholder="¿Qué servicio buscas? Ej. uñas gel, corte fade, masaje..." class="search-input">
-                    <button type="button" class="search-btn">Buscar</button>
+                    <input type="text" id="search-input" placeholder="¿Qué servicio buscas? Ej. uñas gel, corte fade, masaje..." class="search-input">
+                    <button type="button" id="search-btn" class="search-btn">Buscar</button>
                 </div>
 
                 <div class="trending-searches animate-fade-up delay-3">
                     <span>Populares:</span>
-                    <span class="badge"><i class="fa-solid fa-scissors"></i> Barbería</span>
-                    <span class="badge"><i class="fa-solid fa-hand-sparkles"></i> Uñas</span>
-                    <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Color</span>
-                    <span class="badge"><i class="fa-solid fa-spa"></i> Spa</span>
+                    <span class="badge" data-categoria="barberia"><i class="fa-solid fa-scissors"></i> Barbería</span>
+                    <span class="badge" data-categoria="unias"><i class="fa-solid fa-hand-sparkles"></i> Uñas</span>
+                    <span class="badge" data-categoria="color"><i class="fa-solid fa-wand-magic-sparkles"></i> Color</span>
+                    <span class="badge" data-categoria="spa"><i class="fa-solid fa-spa"></i> Spa</span>
+                    <span class="badge" data-categoria="maquillaje"><i class="fa-solid fa-palette"></i> Maquillaje</span>
+                    <span class="badge" data-categoria="masajes"><i class="fa-solid fa-hand-peace"></i> Masajes</span>
                 </div>
 
-                <div class="hero-stats animate-fade-up delay-3">
+                <div class="hero-stats animate-fade-up delay-3" id="hero-stats-row">
                     <div class="hero-stat">
                         <strong>500+</strong>
                         <span>Profesionales</span>
@@ -62,7 +88,7 @@
                 </div>
             </div>
 
-            <div class="hero-visual animate-fade-up delay-2">
+            <div class="hero-visual animate-fade-up delay-2" id="hero-visual-col">
                 <div class="hero-card-stack">
                     <img src="img/how_it_works.jpg" alt="Servicios de belleza en FlexiCupos">
                     <div class="hero-floating-badge">
@@ -77,7 +103,23 @@
         </div>
     </header>
 
-    <section class="categories-section section-block">
+    <!-- Resultados de búsqueda (oculto hasta que se busque) -->
+    <section class="search-results-section section-block" id="search-results" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="results-title">Resultados</h2>
+                <p class="section-subtitle" id="results-count">0 profesionales encontrados</p>
+            </div>
+            <div id="results-grid" class="professional-grid">
+                <!-- Results injected by JS -->
+            </div>
+            <div id="results-pagination" class="pagination"></div>
+        </div>
+    </section>
+
+    <div id="marketing-sections">
+
+    <section class="categories-section section-block" id="categories-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Categorías de servicio</h2>
@@ -216,11 +258,18 @@
         </div>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.navbar');
-            nav.classList.toggle('scrolled', window.scrollY > 40);
-        });
-    </script>
+    </div><!-- /#marketing-sections -->
+
+    <!-- Modal de detalle del profesional -->
+    <div class="modal-overlay" id="profesional-modal">
+        <div class="modal-content modal-lg">
+            <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-body">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
 </body>
 </html>

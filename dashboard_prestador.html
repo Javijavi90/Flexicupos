@@ -3,58 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Profesional - FlexiCupos</title>
+    <title>Panel Profesional - FlexiCupos</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             Flexi<span>Cupos</span>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="#" class="active">Mi Agenda</a></li>
-            <li><a href="#">Mis Servicios y Precios</a></li>
-            <li><a href="#">Portafolio de Trabajo</a></li>
-            <li><a href="#">Mi Perfil</a></li>
+            <li><a href="#" class="active" data-section="resumen"><i class="fa-solid fa-chart-simple"></i> Resumen</a></li>
+            <li><a href="#" data-section="perfil"><i class="fa-solid fa-id-card"></i> Mi Perfil</a></li>
+            <li><a href="#" data-section="servicios"><i class="fa-solid fa-scissors"></i> Mis Servicios</a></li>
+            <li><a href="#" data-section="horarios"><i class="fa-regular fa-clock"></i> Horarios</a></li>
+            <li><a href="#" data-section="agenda"><i class="fa-regular fa-calendar"></i> Agenda</a></li>
+            <li><a href="#" data-section="portafolio"><i class="fa-solid fa-images"></i> Portafolio</a></li>
         </ul>
         <div class="sidebar-footer">
-            <a href="#" id="logout-btn" class="logout-btn">Cerrar Sesión</a>
+            <a href="index.html" class="sidebar-home-link"><i class="fa-solid fa-house"></i> Volver al inicio</a>
+            <a href="#" id="logout-btn" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
         </div>
     </aside>
 
     <!-- Contenido Principal -->
     <main class="main-content">
         <header class="topbar">
-            <h2>Panel de Profesional</h2>
+            <h2>Panel Profesional</h2>
             <div class="user-info">
                 <span id="user-name">Cargando...</span>
-                <span class="role-badge" id="user-role" style="background:#2ecc71;">Cargando...</span>
             </div>
         </header>
 
-        <section class="dashboard-grid">
-            <div class="card">
-                <h3>Citas para Hoy</h3>
-                <p style="color: var(--dash-text-muted);">No tienes citas agendadas para el día de hoy.</p>
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Resumen -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-resumen">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3><i class="fa-regular fa-calendar-check"></i> Citas para Hoy</h3>
+                    <div id="citas-hoy">
+                        <p style="color: var(--dash-text-muted);">Cargando...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-regular fa-circle-check"></i> Visibilidad</h3>
+                    <div id="estado-visibilidad">
+                        <p style="color: var(--dash-text-muted);">Cargando...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-scissors"></i> Servicios Activos</h3>
+                    <div id="resumen-servicios">
+                        <p style="color: var(--dash-text-muted);">Cargando...</p>
+                    </div>
+                    <button class="btn-primary" onclick="showSection('servicios')" style="margin-top: 0.5rem; background: #3498db;">Gestionar servicios</button>
+                </div>
             </div>
-            
-            <div class="card">
-                <h3>Resumen de Portafolio</h3>
-                <p style="color: var(--dash-text-muted);">Aún no has subido imágenes de tus trabajos previos.</p>
-                <button class="btn-primary" style="margin-top: 1rem; background-color: #3498db;">Subir Imágenes</button>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Mi Perfil -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-perfil" style="display: none;">
+            <div class="card" style="max-width: 800px;">
+                <h3><i class="fa-solid fa-id-card"></i> Mi Perfil Profesional</h3>
+                <form id="perfil-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre completo</label>
+                            <input type="text" name="nombre" id="perfil-nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono (WhatsApp)</label>
+                            <input type="text" name="telefono" id="perfil-telefono" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de entidad</label>
+                        <select name="tipo_entidad" id="perfil-tipo-entidad">
+                            <option value="particular">Particular (Persona natural)</option>
+                            <option value="empresa">Empresa / Negocio</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos Particulares -->
+                    <div id="perfil-particular-fields">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre legal</label>
+                                <input type="text" name="nombre_legal" id="perfil-nombre-legal" placeholder="Tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label>Apellido legal</label>
+                                <input type="text" name="apellido_legal" id="perfil-apellido-legal" placeholder="Tu apellido">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campos Empresa -->
+                    <div id="perfil-empresa-fields" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre de la empresa</label>
+                                <input type="text" name="nombre_empresa" id="perfil-nombre-empresa" placeholder="Nombre del negocio">
+                            </div>
+                            <div class="form-group">
+                                <label>RUC / ID Fiscal</label>
+                                <input type="text" name="ruc" id="perfil-ruc" placeholder="RUC o identificación">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Especialidad</label>
+                            <input type="text" name="especialidad" id="perfil-especialidad" required placeholder="Ej. Manicurista, Barbero">
+                        </div>
+                        <div class="form-group">
+                            <label>Categoría</label>
+                            <input type="text" name="categoria" id="perfil-categoria" placeholder="Ej. Uñas, Barbería, Masajes">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección / Zona de trabajo</label>
+                        <input type="text" name="direccion_fisica" id="perfil-direccion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción del perfil</label>
+                        <textarea name="descripcion" id="perfil-descripcion" rows="4"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Sitio web (opcional)</label>
+                            <input type="url" name="sitio_web" id="perfil-sitio-web" placeholder="https://">
+                        </div>
+                        <div class="form-group">
+                            <label>Redes sociales (opcional)</label>
+                            <input type="text" name="redes_sociales" id="perfil-redes" placeholder="@usuario">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Guardar Perfil</button>
+                </form>
             </div>
-            
-            <div class="card">
-                <h3>Servicios Activos</h3>
-                <p style="color: var(--dash-text-muted);">No tienes servicios registrados.</p>
-                <button class="btn-primary" style="margin-top: 1rem;">Agregar Servicio</button>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Mis Servicios -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-servicios" style="display: none;">
+            <div class="card" style="max-width: 800px;">
+                <h3><i class="fa-solid fa-scissors"></i> Mis Servicios y Precios</h3>
+                <div id="servicios-lista">
+                    <p style="color: var(--dash-text-muted);">Cargando...</p>
+                </div>
+                <hr>
+                <h4 style="margin-top: 1rem;">Agregar nuevo servicio</h4>
+                <form id="servicio-form">
+                    <input type="hidden" name="accion" value="crear">
+                    <input type="hidden" name="servicio_id" id="edit-servicio-id" value="0">
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label>Nombre del servicio *</label>
+                            <input type="text" name="nombre_servicio" id="serv-nombre" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Precio base ($)</label>
+                            <input type="number" step="0.01" name="precio" id="serv-precio" value="0">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Duración (min)</label>
+                            <input type="number" name="duracion_minutos" id="serv-duracion" value="60" min="15" step="15">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción del servicio</label>
+                        <textarea name="descripcion_servicio" id="serv-descripcion" rows="2"></textarea>
+                    </div>
+
+                    <!-- Planes -->
+                    <h5 style="margin: 0.75rem 0 0.5rem;">Planes / Paquetes (máx 10)</h5>
+                    <div id="planes-container">
+                        <!-- Plan row template -->
+                        <div class="plan-row">
+                            <input type="text" name="planes[0][nombre_plan]" placeholder="Nombre del plan" class="plan-nombre">
+                            <input type="text" name="planes[0][descripcion_plan]" placeholder="Descripción" class="plan-desc">
+                            <input type="number" step="0.01" name="planes[0][precio]" placeholder="Precio $" class="plan-precio">
+                            <input type="number" name="planes[0][duracion_minutos]" placeholder="Min" value="60" class="plan-duracion">
+                            <button type="button" class="btn-remove-plan" title="Eliminar plan"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-outline" id="add-plan-btn" style="margin: 0.5rem 0;"><i class="fa-solid fa-plus"></i> Agregar plan</button>
+                    <br>
+                    <button type="submit" class="btn-primary" id="btn-guardar-servicio">Guardar Servicio</button>
+                    <button type="button" class="btn-outline" id="btn-cancelar-edicion" style="display: none; margin-left: 0.5rem;">Cancelar edición</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Horarios -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-horarios" style="display: none;">
+            <div class="card" style="max-width: 800px;">
+                <h3><i class="fa-regular fa-clock"></i> Horarios de Trabajo</h3>
+                <p style="color: var(--dash-text-muted); margin-bottom: 1rem;">Define los días y horas en que atiendes. Los días no seleccionados aparecerán bloqueados para los clientes.</p>
+                <form id="horarios-form">
+                    <div class="horarios-grid" id="horarios-grid">
+                        <!-- Generated by JS -->
+                    </div>
+                    <button type="submit" class="btn-primary" style="margin-top: 1rem;">Guardar Horarios</button>
+                </form>
+                <hr style="margin: 1.5rem 0;">
+                <h4>Días bloqueados (excepciones)</h4>
+                <p style="color: var(--dash-text-muted); font-size: 0.85rem;">Bloquea fechas específicas (feriados, vacaciones, etc.)</p>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                    <input type="date" id="bloquear-fecha-input">
+                    <input type="text" id="bloquear-motivo" placeholder="Motivo (opcional)" style="flex: 1;">
+                    <button type="button" class="btn-primary" id="btn-bloquear-fecha" style="background: #e74c3c;">Bloquear Fecha</button>
+                </div>
+                <div id="fechas-bloqueadas" style="margin-top: 1rem;"></div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Agenda -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-agenda" style="display: none;">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3><i class="fa-regular fa-calendar"></i> Próximas Citas</h3>
+                    <div id="agenda-proximas">
+                        <p style="color: var(--dash-text-muted);">Cargando...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> Historial</h3>
+                    <div id="agenda-historial">
+                        <p style="color: var(--dash-text-muted);">Cargando...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Portafolio -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-portafolio" style="display: none;">
+            <div class="card" style="max-width: 800px;">
+                <h3><i class="fa-solid fa-images"></i> Portafolio de Trabajo</h3>
+                <p style="color: var(--dash-text-muted); margin-bottom: 1rem;">Sube hasta 10 fotos de tus trabajos para mostrar a los clientes.</p>
+                <form id="portafolio-form">
+                    <input type="file" name="imagen" accept="image/jpeg,image/png,image/webp" required>
+                    <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">Subir Imagen</button>
+                </form>
+                <div id="portafolio-grid" class="portafolio-grid" style="margin-top: 1.5rem;">
+                    <!-- Generated by JS -->
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- Modal de Confirmación -->
+    <div class="modal-overlay" id="modal-confirm">
+        <div class="modal-content">
+            <h3 id="modal-title">Confirmar</h3>
+            <p id="modal-message"></p>
+            <div class="modal-actions">
+                <button class="btn-outline" id="modal-cancel">Cancelar</button>
+                <button class="btn-primary" id="modal-confirm-btn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Notificación -->
+    <div class="modal-overlay notif-modal" id="notif-modal">
+        <div class="modal-content" style="text-align: center; max-width: 380px;">
+            <i id="notif-icon" class="fa-regular fa-circle-check notif-icon success" style="font-size: 3rem; margin-bottom: 0.75rem;"></i>
+            <h3 id="notif-title" style="margin-bottom: 0.5rem;">Operación exitosa</h3>
+            <p id="notif-message" style="color: var(--dash-text-muted); margin-bottom: 1.25rem;"></p>
+            <button class="btn-primary">Entendido</button>
+        </div>
+    </div>
+
     <script src="js/dashboard.js"></script>
+    <script src="js/prestador-dashboard.js"></script>
 </body>
 </html>

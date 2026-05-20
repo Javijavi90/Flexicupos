@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
 $tipo = $input['tipo'] ?? 'cliente';
-$nombre = $input['nombre'] ?? '';
-$correo = $input['correo'] ?? '';
-$telefono = $input['telefono'] ?? '';
+$nombre = trim($input['nombre'] ?? '');
+$correo = trim($input['correo'] ?? '');
+$telefono = trim($input['telefono'] ?? '');
 $password = $input['password'] ?? '';
 
 if (empty($nombre) || empty($correo) || empty($telefono) || empty($password)) {
@@ -41,13 +41,13 @@ try {
         $stmtPerfil = $db->prepare("INSERT INTO perfiles_clientes (usuario_id, ubicacion) VALUES (:usuario_id, :ubicacion)");
         $stmtPerfil->execute(['usuario_id' => $userId, 'ubicacion' => $ubicacion]);
     } elseif ($tipo === 'prestador') {
-        $especialidad = $input['especialidad'] ?? '';
-        $direccion = $input['direccion'] ?? '';
-        $descripcion = $input['descripcion'] ?? '';
+        $especialidad = trim($input['especialidad'] ?? '');
+        $direccion = trim($input['direccion'] ?? '');
+        $descripcion = trim($input['descripcion'] ?? '');
         
         if (empty($especialidad) || empty($direccion)) {
             $db->rollBack();
-            echo json_encode(['status' => 'error', 'message' => 'Faltan datos de perfil del prestador.']);
+            echo json_encode(['status' => 'error', 'message' => 'Faltan datos de perfil del profesional.']);
             exit;
         }
 
@@ -61,7 +61,7 @@ try {
     }
 
     $db->commit();
-    echo json_encode(['status' => 'success', 'message' => 'Registro exitoso.']);
+    echo json_encode(['status' => 'success', 'message' => 'Registro exitoso. Ahora puedes iniciar sesión.']);
 } catch (Exception $e) {
     if (isset($db)) $db->rollBack();
     error_log(date('[Y-m-d H:i:s] ') . "API Register Error: " . $e->getMessage() . "\n", 3, __DIR__ . '/../../logs/errores.log');

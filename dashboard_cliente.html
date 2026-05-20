@@ -3,51 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Cliente - FlexiCupos</title>
+    <title>Mi Panel - FlexiCupos</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             Flexi<span>Cupos</span>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="#" class="active">Mis Reservas</a></li>
-            <li><a href="#">Buscar Profesionales</a></li>
-            <li><a href="#">Mi Perfil</a></li>
+            <li><a href="#" class="active" data-section="resumen"><i class="fa-solid fa-chart-simple"></i> Resumen</a></li>
+            <li><a href="#" data-section="citas"><i class="fa-regular fa-calendar"></i> Mis Citas</a></li>
+            <li><a href="#" data-section="calendario"><i class="fa-regular fa-calendar-check"></i> Calendario</a></li>
+            <li><a href="#" data-section="perfil"><i class="fa-solid fa-id-card"></i> Mi Perfil</a></li>
         </ul>
         <div class="sidebar-footer">
-            <a href="#" id="logout-btn" class="logout-btn">Cerrar Sesión</a>
+            <a href="index.html" class="sidebar-home-link"><i class="fa-solid fa-house"></i> Volver al inicio</a>
+            <a href="#" id="logout-btn" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
         </div>
     </aside>
 
     <!-- Contenido Principal -->
     <main class="main-content">
         <header class="topbar">
-            <h2>Panel de Cliente</h2>
+            <h2>Mi Panel</h2>
             <div class="user-info">
                 <span id="user-name">Cargando...</span>
-                <span class="role-badge" id="user-role">Cargando...</span>
             </div>
         </header>
 
-        <section class="dashboard-grid">
-            <div class="card">
-                <h3>Próxima Cita</h3>
-                <p style="color: var(--dash-text-muted);">No tienes citas próximas programadas.</p>
-                <button class="btn-primary" style="margin-top: 1rem;">Buscar un Profesional</button>
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Resumen -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-resumen">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3><i class="fa-regular fa-calendar-check"></i> Próximas Citas</h3>
+                    <div id="resumen-citas">
+                        <p style="color: var(--dash-text-muted);">Cargando...</p>
+                    </div>
+                    <button class="btn-primary" onclick="showSection('citas')" style="margin-top: 0.5rem;">Ver todas mis citas</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-regular fa-bell"></i> Información</h3>
+                    <p style="color: var(--dash-text-muted); margin-bottom: 1rem;">
+                        Recuerda que después de <strong>3 cancelaciones</strong>, tu cuenta puede ser suspendida temporalmente.
+                    </p>
+                    <a href="index.html" class="btn-primary" style="display: inline-block;"><i class="fa-solid fa-magnifying-glass"></i> Buscar profesionales</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-user"></i> Mi Perfil</h3>
+                    <div id="resumen-perfil">
+                        <p style="color: var(--dash-text-muted);">Cargando...</p>
+                    </div>
+                    <button class="btn-primary" onclick="showSection('perfil')" style="margin-top: 0.5rem; background: #3498db;">Editar perfil</button>
+                </div>
             </div>
-            
-            <div class="card">
-                <h3>Historial Reciente</h3>
-                <p style="color: var(--dash-text-muted);">Aún no has solicitado ningún servicio.</p>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Mis Citas -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-citas" style="display: none;">
+            <div class="card" style="max-width: 800px;">
+                <h3><i class="fa-regular fa-calendar"></i> Mis Citas</h3>
+                <div class="tabs" style="margin-bottom: 1rem;">
+                    <div class="tab active" data-citas-tab="proximas">Próximas</div>
+                    <div class="tab" data-citas-tab="historial">Historial</div>
+                </div>
+                <div id="citas-lista">
+                    <p style="color: var(--dash-text-muted);">Cargando...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Calendario -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-calendario" style="display: none;">
+            <div class="card" style="max-width: 600px;">
+                <h3><i class="fa-regular fa-calendar-check"></i> Calendario de Citas</h3>
+                <div id="calendario-mini">
+                    <p style="color: var(--dash-text-muted);">Selecciona un día para ver tus citas.</p>
+                </div>
+                <div id="citas-del-dia" style="margin-top: 1rem;"></div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN: Mi Perfil -->
+        <!-- ============================================================ -->
+        <section class="dashboard-section" id="section-perfil" style="display: none;">
+            <div class="card" style="max-width: 600px;">
+                <h3><i class="fa-solid fa-id-card"></i> Mi Perfil</h3>
+                <form id="perfil-cliente-form">
+                    <div class="form-group">
+                        <label>Nombre completo</label>
+                        <input type="text" name="nombre" id="cli-perfil-nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electrónico</label>
+                        <input type="email" id="cli-perfil-correo" disabled style="background: #f0f0f0;">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono (WhatsApp)</label>
+                        <input type="text" name="telefono" id="cli-perfil-telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ubicación / Ciudad</label>
+                        <input type="text" name="ubicacion" id="cli-perfil-ubicacion">
+                    </div>
+                    <button type="submit" class="btn-primary">Guardar Cambios</button>
+                </form>
+
+                <hr style="margin: 2rem 0;">
+                <h4 style="color: #e74c3c;">Zona de Peligro</h4>
+                <p style="color: var(--dash-text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">
+                    Al desactivar tu cuenta no podrás iniciar sesión. Tus datos no se eliminan.
+                </p>
+                <button class="btn-primary" id="btn-desactivar-cuenta" style="background: #e74c3c; box-shadow: 0 4px 14px rgba(231, 76, 60, 0.3);">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Desactivar mi cuenta
+                </button>
             </div>
         </section>
     </main>
 
+    <!-- Modal de Confirmación -->
+    <div class="modal-overlay" id="modal-confirm">
+        <div class="modal-content">
+            <h3 id="modal-title">Confirmar</h3>
+            <p id="modal-message"></p>
+            <div class="modal-actions">
+                <button class="btn-outline" id="modal-cancel">Cancelar</button>
+                <button class="btn-primary" id="modal-confirm-btn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Notificación -->
+    <div class="modal-overlay notif-modal" id="notif-modal">
+        <div class="modal-content" style="text-align: center; max-width: 380px;">
+            <i id="notif-icon" class="fa-regular fa-circle-check notif-icon success" style="font-size: 3rem; margin-bottom: 0.75rem;"></i>
+            <h3 id="notif-title" style="margin-bottom: 0.5rem;">Operación exitosa</h3>
+            <p id="notif-message" style="color: var(--dash-text-muted); margin-bottom: 1.25rem;"></p>
+            <button class="btn-primary">Entendido</button>
+        </div>
+    </div>
+
     <script src="js/dashboard.js"></script>
+    <script src="js/cliente-dashboard.js"></script>
 </body>
 </html>
