@@ -1,0 +1,6 @@
+=== DEMO DE VERSIONADO CON GIT ===
+
+Este archivo sirve para aprender cómo Git guarda el historial de cambios.
+
+Versión 1: Creación del archivo
+Fecha: Primera prueba
