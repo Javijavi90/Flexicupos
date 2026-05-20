@@ -3,4 +3,6 @@
 Este archivo sirve para aprender cómo Git guarda el historial de cambios.
 
 Versión 1: Creación del archivo
-Fecha: Primera prueba
+Versión 2: Modificamos el archivo para ver el historial
+
+¡Así es como Git guarda cada cambio que hacemos!
